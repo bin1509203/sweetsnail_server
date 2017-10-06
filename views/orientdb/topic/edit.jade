@@ -1,0 +1,20 @@
+extends ../layout
+block content
+    article        
+        //form(action='/'+rid+'/edit' method='post')
+        - rid = encodeURIComponent(topic['@rid'])
+        - console.log('jade2 : '+ topic['@rid']+','+rid)
+        if user
+            form(action='/'+rid+'/edit' method='post')
+                p
+                    input(type="text" name='title' placeholder='title' value=topic.title)
+                p
+                    textarea(name="description" placeholder='description' cols="30" rows="10")
+                        =topic.description
+                p
+                    input(type="text" name='author' placeholder='author' value=topic.author)
+                p
+                    input(type="submit")
+        else
+            h2 Warning!
+            | 게시물 쓰기, 읽기, 편집은 로그인을 하여야 가능합니다. 

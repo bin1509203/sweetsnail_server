@@ -1,0 +1,24 @@
+extends ../layout
+block content
+    if user
+        article
+            if topic
+                h2= topic.title
+                = topic.description
+                div= 'by '+topic.author
+            else
+                h2 Welcome
+                | Smart Startup Studio 5호점 달팡이 입니다.
+        ul
+            li
+                a(href="/add") add
+            if topic  
+                - rid = encodeURIComponent(topic['@rid'])
+                - console.log('jade1 : '+ topic['@rid']+','+rid)
+                li      
+                    a(href='/'+rid+'/edit') edit
+                li
+                    a(href='/'+rid+'/delete') delete
+    else
+        h2 Warning!
+        | 게시물 쓰기, 읽기, 편집은 로그인을 하여야 가능합니다. 
